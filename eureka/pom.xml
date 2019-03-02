@@ -10,16 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>eureka</artifactId>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+    <groupId>tk.yimiao.yimiaocloud.eureka</groupId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>${netflix.eureka.version}</version>
         </dependency>
     </dependencies>
 
