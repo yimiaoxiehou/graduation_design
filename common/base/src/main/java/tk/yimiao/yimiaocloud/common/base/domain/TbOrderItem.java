@@ -1,8 +1,24 @@
 package tk.yimiao.yimiaocloud.common.base.domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
+/**
+ * @Package tk.yimiao.yimiaocloud.common.base.domain
+ * @Description: TODO
+ * @author yimiao
+ * @date 2019-03-02 22:41
+ * @version V1.0
+ */
+
+@Table(name = "tb_order_item")
 public class TbOrderItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long itemId;

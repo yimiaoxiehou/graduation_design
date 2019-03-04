@@ -1,8 +1,30 @@
 package tk.yimiao.yimiaocloud.common.base.domain;
 
+import lombok.Data;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * @Package tk.yimiao.yimiaocloud.common.base.domain
+ * @Description: TODO
+ * @author yimiao
+ * @date 2019-03-02 22:41
+ * @version V1.0
+ */
+
+@Table(name = "tb_address")
 public class TbAddress {
+    /**
+     * @id表示该字段对应数据库表的主键id
+     * @GeneratedValue中strategy表示使用数据库自带的主键生成策略.
+     * @GeneratedValue中generator配置为"JDBC",在数据插入完毕之后,会自动将主键id填充到实体类中.类似普通mapper.xml中配置的selectKey标签
+     */
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String userId;
@@ -40,7 +62,7 @@ public class TbAddress {
     }
 
     public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+        this.userId = userId;
     }
 
     public String getProvinceId() {
@@ -48,7 +70,7 @@ public class TbAddress {
     }
 
     public void setProvinceId(String provinceId) {
-        this.provinceId = provinceId == null ? null : provinceId.trim();
+        this.provinceId = provinceId;
     }
 
     public String getCityId() {
@@ -56,7 +78,7 @@ public class TbAddress {
     }
 
     public void setCityId(String cityId) {
-        this.cityId = cityId == null ? null : cityId.trim();
+        this.cityId = cityId;
     }
 
     public String getTownId() {
@@ -64,7 +86,7 @@ public class TbAddress {
     }
 
     public void setTownId(String townId) {
-        this.townId = townId == null ? null : townId.trim();
+        this.townId = townId;
     }
 
     public String getMobile() {
@@ -72,7 +94,7 @@ public class TbAddress {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+        this.mobile = mobile;
     }
 
     public String getAddress() {
@@ -80,7 +102,7 @@ public class TbAddress {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public String getContact() {
@@ -88,7 +110,7 @@ public class TbAddress {
     }
 
     public void setContact(String contact) {
-        this.contact = contact == null ? null : contact.trim();
+        this.contact = contact;
     }
 
     public String getIsDefault() {
@@ -96,7 +118,7 @@ public class TbAddress {
     }
 
     public void setIsDefault(String isDefault) {
-        this.isDefault = isDefault == null ? null : isDefault.trim();
+        this.isDefault = isDefault;
     }
 
     public String getNotes() {
@@ -104,7 +126,7 @@ public class TbAddress {
     }
 
     public void setNotes(String notes) {
-        this.notes = notes == null ? null : notes.trim();
+        this.notes = notes;
     }
 
     public Date getCreateDate() {
@@ -120,6 +142,6 @@ public class TbAddress {
     }
 
     public void setAlias(String alias) {
-        this.alias = alias == null ? null : alias.trim();
+        this.alias = alias;
     }
 }

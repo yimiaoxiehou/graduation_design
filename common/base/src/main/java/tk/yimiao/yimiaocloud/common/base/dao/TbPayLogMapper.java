@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbPayLog;
 
-public interface TbPayLogMapper {
-    int deleteByPrimaryKey(String outTradeNo);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbPayLog record);
 
-    int insertSelective(TbPayLog record);
-
-    TbPayLog selectByPrimaryKey(String outTradeNo);
-
-    int updateByPrimaryKeySelective(TbPayLog record);
-
-    int updateByPrimaryKey(TbPayLog record);
+public interface TbPayLogMapper extends MyBaseMapper<TbPayLog> {
 }

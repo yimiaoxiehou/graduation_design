@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbSpecificationOption;
 
-public interface TbSpecificationOptionMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbSpecificationOption record);
 
-    int insertSelective(TbSpecificationOption record);
-
-    TbSpecificationOption selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbSpecificationOption record);
-
-    int updateByPrimaryKey(TbSpecificationOption record);
+public interface TbSpecificationOptionMapper extends MyBaseMapper<TbSpecificationOption> {
 }

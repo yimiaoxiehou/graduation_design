@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbFreightTemplate;
 
-public interface TbFreightTemplateMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbFreightTemplate record);
 
-    int insertSelective(TbFreightTemplate record);
-
-    TbFreightTemplate selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbFreightTemplate record);
-
-    int updateByPrimaryKey(TbFreightTemplate record);
+public interface TbFreightTemplateMapper extends MyBaseMapper<TbFreightTemplate> {
 }

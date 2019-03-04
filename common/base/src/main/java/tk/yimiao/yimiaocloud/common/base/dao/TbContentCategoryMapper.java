@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbContentCategory;
 
-public interface TbContentCategoryMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbContentCategory record);
 
-    int insertSelective(TbContentCategory record);
-
-    TbContentCategory selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbContentCategory record);
-
-    int updateByPrimaryKey(TbContentCategory record);
+public interface TbContentCategoryMapper extends MyBaseMapper<TbContentCategory> {
 }

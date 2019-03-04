@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbGoods;
 
-public interface TbGoodsMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbGoods record);
 
-    int insertSelective(TbGoods record);
-
-    TbGoods selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbGoods record);
-
-    int updateByPrimaryKey(TbGoods record);
+public interface TbGoodsMapper extends MyBaseMapper<TbGoods> {
 }

@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbProvinces;
 
-public interface TbProvincesMapper {
-    int deleteByPrimaryKey(Integer id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbProvinces record);
 
-    int insertSelective(TbProvinces record);
-
-    TbProvinces selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(TbProvinces record);
-
-    int updateByPrimaryKey(TbProvinces record);
+public interface TbProvincesMapper extends MyBaseMapper<TbProvinces> {
 }

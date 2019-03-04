@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbOrder;
 
-public interface TbOrderMapper {
-    int deleteByPrimaryKey(Long orderId);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbOrder record);
 
-    int insertSelective(TbOrder record);
-
-    TbOrder selectByPrimaryKey(Long orderId);
-
-    int updateByPrimaryKeySelective(TbOrder record);
-
-    int updateByPrimaryKey(TbOrder record);
+public interface TbOrderMapper extends MyBaseMapper<TbOrder> {
 }

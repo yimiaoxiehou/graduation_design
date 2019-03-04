@@ -1,8 +1,24 @@
 package tk.yimiao.yimiaocloud.common.base.domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * @Package tk.yimiao.yimiaocloud.common.base.domain
+ * @Description: TODO
+ * @author yimiao
+ * @date 2019-03-02 22:41
+ * @version V1.0
+ */
+
+@Table(name = "tb_pay_log")
 public class TbPayLog {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String outTradeNo;
 
     private Date createTime;

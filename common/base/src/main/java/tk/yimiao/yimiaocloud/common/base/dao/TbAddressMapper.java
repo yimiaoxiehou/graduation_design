@@ -1,17 +1,17 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbAddress;
 
-public interface TbAddressMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbAddress record);
-
-    int insertSelective(TbAddress record);
-
-    TbAddress selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbAddress record);
-
-    int updateByPrimaryKey(TbAddress record);
+@Mapper
+public interface TbAddressMapper extends MyBaseMapper<TbAddress> {
 }

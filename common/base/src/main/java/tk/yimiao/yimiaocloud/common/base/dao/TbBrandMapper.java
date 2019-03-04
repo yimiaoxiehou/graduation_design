@@ -1,17 +1,15 @@
 package tk.yimiao.yimiaocloud.common.base.dao;
 
+import tk.yimiao.yimiaocloud.common.base.MyBaseMapper;
 import tk.yimiao.yimiaocloud.common.base.domain.TbBrand;
 
-public interface TbBrandMapper {
-    int deleteByPrimaryKey(Long id);
+/**
+ * @author yimiao
+ * @version V1.0
+ * @Package tk.yimiao.yimiaocloud.common.base.dao
+ * @Description: TODO
+ * @date 2019-03-02 22:41
+ */
 
-    int insert(TbBrand record);
-
-    int insertSelective(TbBrand record);
-
-    TbBrand selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(TbBrand record);
-
-    int updateByPrimaryKey(TbBrand record);
+public interface TbBrandMapper extends MyBaseMapper<TbBrand> {
 }
