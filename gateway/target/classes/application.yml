@@ -4,10 +4,10 @@ server:
 spring:
   application:
     name: microservice-gateway-zuul
-  security:
-    oauth2:
-      client:
-        provider:
+#  security:
+#    user:
+#      name: admin
+#      password: admin
 
 eureka:
   client:
@@ -28,3 +28,7 @@ management:
     web:
       exposure:
         include: '*'
+
+swagger:
+  enabled: true
+
