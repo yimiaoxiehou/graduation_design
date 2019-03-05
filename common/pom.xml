@@ -11,14 +11,22 @@
 
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>base</module>
-        <module>config</module>
-        <module>core</module>
-        <module>util</module>
-        <module>zk</module>
-    </modules>
     <groupId>tk.yimiao.yimiaocloud.common</groupId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.49</version>
+        </dependency>
+    </dependencies>
 
 </project>

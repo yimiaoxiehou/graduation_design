@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: microservice-gateway-zuul
+  security:
+    oauth2:
+      client:
+        provider:
 
 eureka:
   client:
@@ -13,6 +17,7 @@ eureka:
 zuul:
   routes:
     microservice-provider-user: /user/** #配置指定的微服务服务路径
+
 
 logging:
   level:

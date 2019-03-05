@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>provider</artifactId>
+    <groupId>tk.yimiao.yimiaocloud.provide</groupId>
 
 
 </project>

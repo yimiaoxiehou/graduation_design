@@ -1,0 +1,85 @@
+/**
+ * @Package tk.yimiao.yimiaocloud.common.base.exception.model
+ * @Description: TODO
+ * @author yimiao
+ * @date 2019-03-05 14:43
+ * @version V1.0
+ */
+package tk.yimiao.yimiaocloud.common.model;
+
+import tk.yimiao.yimiaocloud.common.constant.ErrorCode;
+import tk.yimiao.yimiaocloud.common.constant.GlobalErrorCode;
+
+public class RestResultBuilder<T> {
+    protected int code = 200;
+    protected String message;
+    protected T data;
+
+    public static RestResultBuilder builder() {
+        RestResultBuilder restResultBuilder = new RestResultBuilder();
+        return restResultBuilder;
+    }
+
+    public RestResultBuilder code(int code) {
+        this.code = code;
+        return this;
+    }
+
+    public RestResultBuilder message(String message) {
+        this.message = message;
+        return this;
+    }
+
+    public RestResultBuilder data(T data) {
+        this.data = data;
+        return this;
+    }
+
+    public void initErrorCode(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
+    }
+
+    public RestResultBuilder errorCode(ErrorCode errorCode) {
+        initErrorCode(errorCode);
+        return this;
+    }
+
+    public RestResultBuilder success() {
+        initErrorCode(GlobalErrorCode.SUCCESS);
+        return this;
+    }
+
+    public RestResultBuilder success(T data) {
+        initErrorCode(GlobalErrorCode.SUCCESS);
+        this.data = data;
+        return this;
+    }
+
+    public RestResultBuilder failure() {
+        initErrorCode(GlobalErrorCode.FAILURE);
+        return this;
+    }
+
+    public RestResultBuilder failure(T data) {
+        initErrorCode(GlobalErrorCode.FAILURE);
+        this.data = data;
+        return this;
+    }
+
+    public RestResultBuilder success(Boolean result) {
+        if (result) {
+            return this.success();
+        } else {
+            return this.failure();
+        }
+    }
+
+    public RestResult<T> build() {
+        return new RestResult<T>(this.code, this.message, this.data);
+    }
+
+    public RestResult build(RestResult restResult) {
+        return restResult;
+    }
+}
