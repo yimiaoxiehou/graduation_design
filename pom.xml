@@ -13,13 +13,9 @@
         <module>common</module>
         <module>gateway</module>
         <module>monitor</module>
-        <module>generator</module>
         <module>eureka</module>
-        <module>discovery</module>
-        <module>provider</module>
-        <module>provider-api</module>
         <module>zipkin</module>
-        <module>ms</module>
+        <module>microservice</module>
     </modules>
 
     <properties>

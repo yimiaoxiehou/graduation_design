@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * @Package tk.yimiao.yimiaocloud.eureka
- * @Description: TODO
+ * @Description: Eureka 服务器
  * @author yimiao
  * @date 2019-03-02 22:41
  * @version V1.0
