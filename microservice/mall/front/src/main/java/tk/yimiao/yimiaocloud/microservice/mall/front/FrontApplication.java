@@ -11,7 +11,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "tk.yimiao.yimiaocloud")
 @MapperScan("tk.yimiao.yimiaocloud.microservice.mall.base.mapper")
 public class FrontApplication {
     public static void main(String[] args){

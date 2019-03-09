@@ -7,9 +7,13 @@
  */
 package tk.yimiao.yimiaocloud.common.model;
 
-import tk.yimiao.yimiaocloud.common.constant.ErrorCode;
-import tk.yimiao.yimiaocloud.common.constant.GlobalErrorCode;
+import tk.yimiao.yimiaocloud.common.constant.ErrorCodeEnum;
+import tk.yimiao.yimiaocloud.common.constant.GlobalErrorCodeEnum;
 
+/**
+ *
+ * @param <T>
+ */
 public class RestResultBuilder<T> {
     protected int code = 200;
     protected String message;
@@ -35,34 +39,34 @@ public class RestResultBuilder<T> {
         return this;
     }
 
-    public void initErrorCode(ErrorCode errorCode) {
-        this.code = errorCode.getCode();
-        this.message = errorCode.getMessage();
+    public void initErrorCode(ErrorCodeEnum errorCodeEnum) {
+        this.code = errorCodeEnum.getCode();
+        this.message = errorCodeEnum.getMessage();
     }
 
-    public RestResultBuilder errorCode(ErrorCode errorCode) {
-        initErrorCode(errorCode);
+    public RestResultBuilder errorCode(ErrorCodeEnum errorCodeEnum) {
+        initErrorCode(errorCodeEnum);
         return this;
     }
 
     public RestResultBuilder success() {
-        initErrorCode(GlobalErrorCode.SUCCESS);
+        initErrorCode(GlobalErrorCodeEnum.SUCCESS);
         return this;
     }
 
     public RestResultBuilder success(T data) {
-        initErrorCode(GlobalErrorCode.SUCCESS);
+        initErrorCode(GlobalErrorCodeEnum.SUCCESS);
         this.data = data;
         return this;
     }
 
     public RestResultBuilder failure() {
-        initErrorCode(GlobalErrorCode.FAILURE);
+        initErrorCode(GlobalErrorCodeEnum.FAILURE);
         return this;
     }
 
     public RestResultBuilder failure(T data) {
-        initErrorCode(GlobalErrorCode.FAILURE);
+        initErrorCode(GlobalErrorCodeEnum.FAILURE);
         this.data = data;
         return this;
     }

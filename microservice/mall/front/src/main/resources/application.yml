@@ -1,5 +1,10 @@
-# spring 数据连接池配置
+server:
+  port: 7777
+
 spring:
+  application:
+    name: microservice-gateway-zuul
+    # spring 数据连接池配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://qq.yimiaohome.top:3306/xmall?characterEncoding=UTF-8
@@ -24,7 +29,12 @@ spring:
       stat-view-servlet:
         login-username: root
         login-password: root
+  redis:
+    host: localhost
+    port: 6379
 # http://localhost:8765/druid/sql.html  访问这个页面
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
 

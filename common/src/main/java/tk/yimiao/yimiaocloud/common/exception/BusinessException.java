@@ -7,12 +7,12 @@
  */
 package tk.yimiao.yimiaocloud.common.exception;
 
-import tk.yimiao.yimiaocloud.common.constant.ErrorCode;
+import tk.yimiao.yimiaocloud.common.constant.ErrorCodeEnum;
 
 public class BusinessException extends RuntimeException {
 
     private int code = 500;
-    private ErrorCode errorCode;
+    private ErrorCodeEnum errorCodeEnum;
 
     public BusinessException(int code) {
         this.code = code;
@@ -28,16 +28,16 @@ public class BusinessException extends RuntimeException {
         this.code = code;
     }
 
-    public BusinessException(ErrorCode errorCode) {
-        this.errorCode = errorCode;
+    public BusinessException(ErrorCodeEnum errorCodeEnum) {
+        this.errorCodeEnum = errorCodeEnum;
     }
 
-    public BusinessException(Throwable cause, ErrorCode errorCode) {
-        super(formatMsg(errorCode), cause);
-        this.errorCode = errorCode;
+    public BusinessException(Throwable cause, ErrorCodeEnum errorCodeEnum) {
+        super(formatMsg(errorCodeEnum), cause);
+        this.errorCodeEnum = errorCodeEnum;
     }
 
-    public final static String formatMsg(ErrorCode errorCodeEnum) {
+    public final static String formatMsg(ErrorCodeEnum errorCodeEnum) {
         return String.format("%s-%s", errorCodeEnum.getCode(), errorCodeEnum.getMessage());
     }
 
@@ -45,7 +45,7 @@ public class BusinessException extends RuntimeException {
         return this.code;
     }
 
-    public ErrorCode getErrorCode() {
-        return this.errorCode;
+    public ErrorCodeEnum getErrorCodeEnum() {
+        return this.errorCodeEnum;
     }
 }
