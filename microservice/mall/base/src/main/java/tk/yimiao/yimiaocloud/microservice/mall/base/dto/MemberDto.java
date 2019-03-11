@@ -3,11 +3,10 @@ package tk.yimiao.yimiaocloud.microservice.mall.base.dto;
 import java.io.Serializable;
 
 /**
- *
  * @author Exrick
  * @date 2017/8/25
  */
-public class MemberDto implements Serializable{
+public class MemberDto implements Serializable {
 
     private String username;
 

@@ -22,8 +22,8 @@ public class SimpleController {
     @GetMapping("/hello")
     @ApiOperation(value = "demo 示例", notes = "demo notes ")
     @ApiImplicitParam(name = "name", value = "名称", example = "example")
-    public String hello(String name){
-        return "hi,"+name+" , this is zuul api.";
+    public String hello(String name) {
+        return "hi," + name + " , this is zuul api.";
     }
 
 }

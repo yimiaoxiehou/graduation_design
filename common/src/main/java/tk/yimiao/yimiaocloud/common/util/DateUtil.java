@@ -9,6 +9,7 @@ package tk.yimiao.yimiaocloud.common.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -102,7 +103,7 @@ public class DateUtil {
      * @return 格式化后的字符串
      */
     public static String format(Date date, String format) {
-        if (date == null){
+        if (date == null) {
             return "";
         }
         return new SimpleDateFormat(format).format(date);

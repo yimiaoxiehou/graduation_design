@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * @author Exrickx
  */
-public class RoleDto implements Serializable{
+public class RoleDto implements Serializable {
 
     private int id;
 

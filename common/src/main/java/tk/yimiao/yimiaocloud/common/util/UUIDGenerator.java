@@ -11,12 +11,12 @@ import java.util.UUID;
 
 public class UUIDGenerator {
 
-    public static String getUUID(){
+    public static String getUUID() {
         StringBuilder sb = new StringBuilder();
-        synchronized (sb){
+        synchronized (sb) {
             UUID uuid = UUID.randomUUID();
             String[] list = uuid.toString().split("-");
-            for (String s:list){
+            for (String s : list) {
                 sb.append(s);
             }
         }

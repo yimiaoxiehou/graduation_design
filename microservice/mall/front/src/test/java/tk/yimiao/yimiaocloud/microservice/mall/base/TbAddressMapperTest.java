@@ -9,11 +9,11 @@ import tk.yimiao.yimiaocloud.microservice.mall.base.mapper.TbAddressMapper;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbAddress;
 
 import javax.sql.DataSource;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author yimiao
@@ -32,7 +32,7 @@ public class TbAddressMapperTest {
     TbAddressMapper tbAddressMapper;
 
     @Test
-    public void test(){
+    public void test() {
         try {
             Connection connection = dataSource.getConnection();
             assertNotNull(connection);

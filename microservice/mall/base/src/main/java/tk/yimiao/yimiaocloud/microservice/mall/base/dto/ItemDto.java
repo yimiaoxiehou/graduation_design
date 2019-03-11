@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * @author Exrickx
  */
-public class ItemDto implements Serializable{
+public class ItemDto implements Serializable {
 
     private Long id;
 

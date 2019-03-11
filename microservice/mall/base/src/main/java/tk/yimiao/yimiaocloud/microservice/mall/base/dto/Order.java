@@ -1,17 +1,16 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.dto;
 
 import lombok.Data;
-import org.apache.ibatis.reflection.ArrayUtil;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbAddress;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbOrder;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Data
-public class Order implements Serializable{
+public class Order implements Serializable {
 
     private Long orderId;
 
@@ -34,8 +33,9 @@ public class Order implements Serializable{
     public Order() {
     }
 
-    public static class Builder{
+    public static class Builder {
         Order order;
+
         public Builder(TbOrder tbOrder) {
             order = new Order();
             order.setOrderId(Long.valueOf(tbOrder.getOrderId()));
@@ -43,36 +43,37 @@ public class Order implements Serializable{
             order.setOrderStatus(String.valueOf(tbOrder.getStatus()));
         }
 
-        public Builder createDate(String date){
+        public Builder createDate(String date) {
             order.setCreateDate(date);
             return this;
         }
 
-        public Builder closeDate(String date){
+        public Builder closeDate(String date) {
             order.setCloseDate(date);
             return this;
         }
-        public Builder payDate(String date){
+
+        public Builder payDate(String date) {
             order.setPayDate(date);
             return this;
         }
 
-        public Builder finishDate(String date){
+        public Builder finishDate(String date) {
             order.setFinishDate(date);
             return this;
         }
 
-        public Builder address(TbAddress tbAddress){
+        public Builder address(TbAddress tbAddress) {
             order.addressInfo = tbAddress;
             return this;
         }
 
-        public Builder goodList(List<CartProduct> goodList){
+        public Builder goodList(List<CartProduct> goodList) {
             order.goodsList.addAll(goodList);
             return this;
         }
 
-        public Order build(){
+        public Order build() {
             return order;
         }
     }

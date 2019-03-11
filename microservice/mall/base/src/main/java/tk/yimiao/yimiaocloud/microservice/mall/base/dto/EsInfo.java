@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @author Exrickx
  */
-public class EsInfo implements Serializable{
+public class EsInfo implements Serializable {
 
     private String cluster_name;
 

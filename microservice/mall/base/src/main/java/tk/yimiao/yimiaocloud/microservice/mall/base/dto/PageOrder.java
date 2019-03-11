@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Exrickx
  */
-public class PageOrder implements Serializable{
+public class PageOrder implements Serializable {
 
     private int total;
 

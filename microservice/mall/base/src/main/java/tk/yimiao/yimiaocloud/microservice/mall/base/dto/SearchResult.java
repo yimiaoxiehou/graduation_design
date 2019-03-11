@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Exrickx
  */
-public class SearchResult implements Serializable{
+public class SearchResult implements Serializable {
 
     private Long recordCount;
 

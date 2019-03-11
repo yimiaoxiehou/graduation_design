@@ -26,12 +26,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Config {
 
     /**
-     *是否开启swagger，正式环境一般是需要关闭的，可根据springboot的多环境配置进行设置
+     * 是否开启swagger，正式环境一般是需要关闭的，可根据springboot的多环境配置进行设置
      */
     @Value(value = "${swagger.enabled}")
     Boolean swaggerEnable;
 
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("通用 api 接口文档")
                 .apiInfo(apiInfo())
@@ -45,13 +45,14 @@ public class Config {
 
     /**
      * 设置 api 信息
+     *
      * @return
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("YimiaoCloud api 文档")
                 .description("yimiaoxiehou | 一秒邂逅")
-                .contact(new Contact("yimiao","http://yimiao.tk","yimiaoxiehou@gmail.com"))
+                .contact(new Contact("yimiao", "http://yimiao.tk", "yimiaoxiehou@gmail.com"))
                 .version("1.0.0")
                 .build();
     }

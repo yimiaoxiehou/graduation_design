@@ -36,9 +36,9 @@ public class EmailUtil {
             email.addTo(emailAddress);
             // 邮件主题和内容
             email.setSubject(SYSTEM_NAME + emailSubjectEnum.getMessage());
-            switch (emailSubjectEnum){
+            switch (emailSubjectEnum) {
                 case ACTIVATE:
-                    email.setMsg("打开下面网址即可以完成注册"+content);
+                    email.setMsg("打开下面网址即可以完成注册" + content);
                     break;
                 case RESETPASSWORD:
                     break;
@@ -55,10 +55,10 @@ public class EmailUtil {
     }
 
 
-    public static void main(String[] args) {
-
-        EmailUtil.sendMail("yimiaoxiehou@gmail.com", "1231234", EmailSubjectEnum.ACTIVATE);
-
-    }
+//    public static void main(String[] args) {
+//
+//        EmailUtil.sendMail("yimiaoxiehou@gmail.com", "1231234", EmailSubjectEnum.ACTIVATE);
+//
+//    }
 
 }

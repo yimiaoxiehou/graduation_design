@@ -5,10 +5,11 @@ import java.io.Serializable;
 
 /**
  * 前后端交互数据标准
+ *
  * @author Exrickx
  * @Date 2018/03/24
  */
-public class Result<T> implements Serializable{
+public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

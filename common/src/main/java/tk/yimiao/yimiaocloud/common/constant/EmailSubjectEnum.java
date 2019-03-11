@@ -9,9 +9,9 @@ package tk.yimiao.yimiaocloud.common.constant;
 
 public enum EmailSubjectEnum {
 
-    ACTIVATE(1,"激活",48),
-    RESETPASSWORD(2,"重置密码",2),
-    PAY_CHECK(3,"支付确认",0);
+    ACTIVATE(1, "激活", 48),
+    RESETPASSWORD(2, "重置密码", 2),
+    PAY_CHECK(3, "支付确认", 0);
 
     private final int type;
     private final String message;
@@ -23,7 +23,7 @@ public enum EmailSubjectEnum {
         this.validHour = validHour;
     }
 
-    public int getType(){
+    public int getType() {
         return type;
     }
 

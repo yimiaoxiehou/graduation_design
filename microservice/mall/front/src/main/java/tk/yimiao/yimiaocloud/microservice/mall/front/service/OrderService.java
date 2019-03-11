@@ -52,15 +52,16 @@ public class OrderService {
 
     /**
      * 查询订单列表，使用 pagehelper 封装
+     *
      * @param userId 用户id
-     * @param page 页码
-     * @param size 数量
+     * @param page   页码
+     * @param size   数量
      * @return
      */
     public PageOrder getOrderList(Long userId, int page, int size) {
 
-        if (page <=0){
-            page =1;
+        if (page <= 0) {
+            page = 1;
         }
         PageHelper.startPage(page, size);
 
@@ -68,8 +69,7 @@ public class OrderService {
 
         // 查询订单
         TbOrderExample tbOrderExample = new TbOrderExample();
-        TbOrderExample.Criteria criteria = tbOrderExample.createCriteria();
-        criteria.andUserIdEqualTo(userId);
+        tbOrderExample.createCriteria().andUserIdEqualTo(userId);
         tbOrderExample.setOrderByClause("create_time desc");
 
         // 从 pojo 类封装订单信息到 dto
@@ -96,6 +96,7 @@ public class OrderService {
 
     /**
      * 查询用户的订单数量
+     *
      * @param userId
      * @return
      */
@@ -111,6 +112,7 @@ public class OrderService {
 
     /**
      * 根据 orderId 查询 order
+     *
      * @param orderId
      * @return
      */
@@ -119,8 +121,8 @@ public class OrderService {
         TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(String.valueOf(orderId));
 
         // 查询为空，则抛出自定义错误
-        if (tbOrder == null){
-            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order id : {%s}",orderId));
+        if (tbOrder == null) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order id : {%s}", orderId));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND);
         }
 
@@ -171,15 +173,16 @@ public class OrderService {
 
     /**
      * 创建订单
+     *
      * @param orderInfo 订单信息
      * @return
      */
     public Long createOrder(OrderInfo orderInfo) {
 
         TbMember member = tbMemberMapper.selectByPrimaryKey(Long.valueOf(orderInfo.getUserId()));
-        if (null == member){
-            log.error(GlobalErrorCodeEnum.BUSINESS_USER_NOT_FOUND.getMessage() + String.format(" user id : {%s}",orderInfo.getUserId()));
-            throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_USER_NOT_FOUND);
+        if (null == member) {
+            log.error(GlobalErrorCodeEnum.USER_NOT_FOUND.getMessage() + String.format(" user id : {%s}", orderInfo.getUserId()));
+            throw new BusinessException(GlobalErrorCodeEnum.USER_NOT_FOUND);
         }
 
         TbOrder tbOrder = new TbOrder();
@@ -194,8 +197,8 @@ public class OrderService {
         tbOrder.setUpdateTime(date);
         tbOrder.setStatus(OrderStateEnum.CREATE.getCode());
 
-        if (tbOrderMapper.insert(tbOrder) != 1){
-            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order is : {%s}",JSON.toJSONString(tbOrder)));
+        if (tbOrderMapper.insert(tbOrder) != 1) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order is : {%s}", JSON.toJSONString(tbOrder)));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_CREATE_FAIL);
         }
 
@@ -212,25 +215,25 @@ public class OrderService {
             tbOrderItem.setPrice(cartProduct.getSalePrice());
             tbOrderItem.setTotalFee(cartProduct.getSalePrice().multiply(BigDecimal.valueOf(cartProduct.getProductNum())));
 
-            if (tbOrderItemMapper.insert(tbOrderItem)!= 1){
-                log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL.getMessage() + String.format(" order is : {%s}",JSON.toJSONString(tbOrder)));
+            if (tbOrderItemMapper.insert(tbOrderItem) != 1) {
+                log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL.getMessage() + String.format(" order is : {%s}", JSON.toJSONString(tbOrder)));
                 throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL);
             }
 
             // 删除购物车商品
 
-            try{
-                String key = RedisKeyEnum.CART_PRE.getKey()+orderInfo.getUserId();
+            try {
+                String key = RedisKeyEnum.CART_PRE.getKey() + orderInfo.getUserId();
                 List<String> jsonList = jedisUtil.hvals(key);
                 List<String> delCartItem = new ArrayList<String>();
                 for (String s : jsonList) {
                     CartProduct cart = JSON.parseObject(s, CartProduct.class);
-                    if (cart.getProductId().equals(cartProduct.getProductId())){
+                    if (cart.getProductId().equals(cartProduct.getProductId())) {
                         delCartItem.add(String.valueOf(cartProduct.getProductId()));
                     }
                 }
-                jedisUtil.hdel(key, (String[])delCartItem.toArray());
-            }catch (Exception e){
+                jedisUtil.hdel(key, (String[]) delCartItem.toArray());
+            } catch (Exception e) {
                 log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL.getMessage() + String.format(" userId is : {%s}", orderInfo.getUserId()));
                 throw new BusinessException(e.getCause(), GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL);
             }
@@ -244,8 +247,8 @@ public class OrderService {
         tbOrderShipping.setCreated(date);
         tbOrderShipping.setUpdated(date);
 
-        if (tbOrderShippingMapper.insert(tbOrderShipping) != 1){
-            log.error(GlobalErrorCodeEnum.BUSINESS_SHIPPING_SAVE_FAIL.getMessage() + String.format(" ship info is : {%s}",JSON.toJSONString(tbOrderShipping)));
+        if (tbOrderShippingMapper.insert(tbOrderShipping) != 1) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_SHIPPING_SAVE_FAIL.getMessage() + String.format(" ship info is : {%s}", JSON.toJSONString(tbOrderShipping)));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_SHIPPING_SAVE_FAIL);
         }
 
@@ -254,6 +257,7 @@ public class OrderService {
 
     /**
      * 取消订单
+     *
      * @param orderId 订单id
      * @return
      */
@@ -263,6 +267,7 @@ public class OrderService {
 
     /**
      * 删除订单
+     *
      * @param orderId 订单id
      * @return
      */
@@ -272,22 +277,23 @@ public class OrderService {
 
     /**
      * 更新订单状态
-     * @param orderId 订单id
+     *
+     * @param orderId        订单id
      * @param orderStateEnum 状态 enum
      * @return
      */
-    private int updateOrderState(Long orderId, OrderStateEnum orderStateEnum ) {
+    private int updateOrderState(Long orderId, OrderStateEnum orderStateEnum) {
 
         TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(String.valueOf(orderId));
-        if (tbOrder == null){
-            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order id : {%s}",orderId));
+        if (tbOrder == null) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order id : {%s}", orderId));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND);
         }
         tbOrder.setStatus(orderStateEnum.getCode());
         tbOrder.setUpdateTime(new Date());
         tbOrder.setCloseTime(new Date());
-        if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1){
-            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_UPDATE_ERROR.getMessage() + String.format(". Order : {%s}",JSON.toJSONString(tbOrder)));
+        if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_UPDATE_ERROR.getMessage() + String.format(". Order : {%s}", JSON.toJSONString(tbOrder)));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_UPDATE_ERROR);
         }
 
@@ -296,6 +302,7 @@ public class OrderService {
 
     /**
      * 订单支付
+     *
      * @param tbThanks 支付信息
      */
     public void payOrder(TbThanks tbThanks) {
@@ -307,11 +314,11 @@ public class OrderService {
         tbThanks.setDate(date);
 
         TbMember tbMember = tbMemberMapper.selectByPrimaryKey(Long.valueOf(tbThanks.getUserId()));
-        if (tbMember != null){
+        if (tbMember != null) {
             tbThanks.setUsername(tbMember.getUsername());
         }
-        if (tbThanksMapper.insert(tbThanks)!=1){
-            log.error(GlobalErrorCodeEnum.BUSINESS_PAY_INFO_SAVE_ERROR.getMessage() + String.format(". PayInfo : {%s}",JSON.toJSONString(tbThanks)));
+        if (tbThanksMapper.insert(tbThanks) != 1) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_PAY_INFO_SAVE_ERROR.getMessage() + String.format(". PayInfo : {%s}", JSON.toJSONString(tbThanks)));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_PAY_INFO_SAVE_ERROR);
         }
 
@@ -320,15 +327,15 @@ public class OrderService {
         tbOrder.setStatus(OrderStateEnum.PAY.getCode());
         tbOrder.setUpdateTime(date);
         tbOrder.setPaymentTime(date);
-        if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1){
-            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_UPDATE_ERROR.getMessage() + String.format(". Order : {%s}",JSON.toJSONString(tbOrder)));
+        if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1) {
+            log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_UPDATE_ERROR.getMessage() + String.format(". Order : {%s}", JSON.toJSONString(tbOrder)));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_UPDATE_ERROR);
         }
 
         // 发送邮件确认
         String emailAddress = tbThanks.getEmail();
         String content = String.format("「 %s 」支付待审核确认，订单号：【%s】，支付金额：【%s】，支付方式：【%s】 ", ConstField.SYSTEM_NAME.getField(), tbThanks.getOrderId(), tbThanks.getMoney(), tbThanks.getPayType());
-        EmailUtil.sendMail(emailAddress,content, EmailSubjectEnum.PAY_CHECK);
+        EmailUtil.sendMail(emailAddress, content, EmailSubjectEnum.PAY_CHECK);
 
     }
 }

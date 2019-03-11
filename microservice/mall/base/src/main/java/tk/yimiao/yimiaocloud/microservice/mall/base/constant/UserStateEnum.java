@@ -8,12 +8,15 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.constant;
 
 public enum UserStateEnum {
-    REGISTER(1,"注册"),
-    ACTIVATE(2,"激活"),
-    RESET_PASSWORD(3,"重置密码"),
-    DELETE(4,"注销"),
-    UNSAFE(5,"不安全，需验证"),
-    OTHER(0,"其它");
+    /**
+     * 用户账号状态
+     */
+    REGISTER(1, "注册"),
+    ACTIVATE(2, "激活"),
+    RESET_PASSWORD(3, "重置密码"),
+    DELETE(4, "销户"),
+    UNSAFE(5, "不安全，需验证"),
+    OTHER(0, "正常");
 
     private int code;
     private String desc;
@@ -30,4 +33,6 @@ public enum UserStateEnum {
     public String getDesc() {
         return desc;
     }
+
+
 }

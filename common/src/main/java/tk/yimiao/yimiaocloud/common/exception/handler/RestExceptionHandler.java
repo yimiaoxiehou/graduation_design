@@ -29,10 +29,10 @@ import tk.yimiao.yimiaocloud.common.exception.ApplicationException;
 import tk.yimiao.yimiaocloud.common.exception.BusinessException;
 import tk.yimiao.yimiaocloud.common.model.RestResult;
 import tk.yimiao.yimiaocloud.common.model.RestResultBuilder;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.SQLException;
 import java.util.Map;
 
 @Slf4j
@@ -41,24 +41,25 @@ public class RestExceptionHandler {
 
     @ExceptionHandler
     private RestResult runtimeExceptionHandler(Exception ex) {
-        log.error("---------> runtimeException message:{}" + ex.getMessage());
+        log.error(String.format("---------> runtimeException message:{%s}", ex.getMessage()), ex);
         return RestResultBuilder.builder().failure().build();
     }
 
     /**
      * mybatis 不鼓励俘获异常，所以对异常进行了封装，抛出来的是 DataAccessException 不属于 SQLException 的子类
      * 具体异常信息在 DataAccessException.getCause() 中
+     *
      * @param ex
      * @return
      */
     @ExceptionHandler(DataAccessException.class)
     private RestResult mybatisExceptionHandler(DataAccessException ex) {
         Throwable throwable = ex.getCause();
-        if (throwable instanceof MySQLIntegrityConstraintViolationException){
-            log.warn("---------> MySQLIntegrityConstraintViolationException message:{}", ex.getMessage());
+        if (throwable instanceof MySQLIntegrityConstraintViolationException) {
+            log.warn(String.format("---------> MySQLIntegrityConstraintViolationException message:{%s}", ex.getMessage()), ex);
             return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.MYSQL_VIOLATION_ERROR).build();
         }
-        log.warn("---------> sqlException message:{}", ex.getMessage());
+        log.warn(String.format("---------> sqlException message:{%s}", ex.getMessage()), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.MYSQL_ERROR).build();
     }
 
@@ -69,7 +70,7 @@ public class RestExceptionHandler {
         bindingResult.getFieldErrors().forEach(error -> {
             errors.put(error.getField(), error.getDefaultMessage());
         });
-        log.warn("---------> invalid request! fields ex:{}", JSON.toJSONString(errors));
+        log.warn(String.format("---------> invalid request! fields ex:{%s}", JSON.toJSONString(errors)), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.BAD_REQUEST).data(errors).build();
     }
 
@@ -79,19 +80,19 @@ public class RestExceptionHandler {
         ex.getFieldErrors().forEach(error -> {
             errors.put(error.getField(), error.getDefaultMessage());
         });
-        log.warn("---------> invalid request! fields ex:{}", JSON.toJSONString(errors));
+        log.warn(String.format("---------> invalid request! fields ex:{%s}", JSON.toJSONString(errors)), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.BAD_REQUEST).data(errors).build();
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     private RestResult messageNotReadableExceptiionHandler(HttpMessageNotReadableException ex) {
-        log.warn("---------> json convert failure,exception:{}", ex.getMessage());
+        log.warn(String.format("---------> json convert failure,exception:{%s}", ex.getMessage()), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.BAD_REQUEST).build();
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     private RestResult methodArgumentExceptionHandler(MethodArgumentTypeMismatchException ex) {
-        log.warn("---------> path variable failure,exception:{}", ex.getMessage());
+        log.warn(String.format("---------> path variable failure,exception:{%s}", ex.getMessage()), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.BAD_REQUEST).build();
     }
 
@@ -99,34 +100,33 @@ public class RestExceptionHandler {
     private RestResult businessExceptionHandler(BusinessException ex) {
         ErrorCodeEnum errorCodeEnum = ex.getErrorCodeEnum();
         if (ex.getErrorCodeEnum() == null) {
-            log.warn("---------> business exception code:{}, message:{}", ex.getCode(), ex.getMessage());
+            log.warn(String.format("---------> business exception code:{%s}, message:{%s}", ex.getCode(), ex.getMessage()), ex);
             return RestResultBuilder.builder().code(ex.getCode()).message(ex.getMessage()).build();
         } else {
-            log.warn("---------> business exception code:{}, message:{}", errorCodeEnum.getCode(), errorCodeEnum.getMessage());
+            log.warn(String.format("---------> business exception code:{%s}, message:{%s}", errorCodeEnum.getCode(), errorCodeEnum.getMessage()), ex);
             return RestResultBuilder.builder().code(errorCodeEnum.getCode()).message(errorCodeEnum.getMessage()).build();
         }
     }
 
     @ExceptionHandler(ApplicationException.class)
     private RestResult applicationExceptionHandler(ApplicationException ex) {
-        log.error("---------> application exception message:" + ex.getMessage(), ex);
+        log.error(String.format("---------> application exception message : {%s}", ex.getMessage()), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.INTERNAL_SERVER_ERROR).build();
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     private RestResult noHandlerFoundExceptionHandler(NoHandlerFoundException ex) {
-        log.warn("noHandlerFoundException 404 error requestUrl:{}, method:{}, exception:{}", ex.getRequestURL(), ex.getHttpMethod(), ex.getMessage());
+        log.warn(String.format("noHandlerFoundException 404 error requestUrl:{%s}, method:{%s}, exception:{%s}", ex.getRequestURL(), ex.getHttpMethod(), ex.getMessage()), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.NOT_FOUND).build();
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(value = HttpStatus.METHOD_NOT_ALLOWED)
     private RestResult httpRequestMethodHandler(HttpServletRequest request, HttpRequestMethodNotSupportedException ex) {
-        log.warn("httpRequestMethodHandler 405 error requestUrl:{}, method:{}, exception:{}", request.getRequestURI(), ex.getMethod());
+        log.warn(String.format("httpRequestMethodHandler 405 error requestUrl:{%s}, method:{%s}", request.getRequestURI(), ex.getMethod()), ex);
         return RestResultBuilder.builder().errorCode(GlobalErrorCodeEnum.METHOD_NOT_ALLOWED).build();
     }
-
 
 
     /**

@@ -11,7 +11,6 @@ import tk.yimiao.yimiaocloud.common.constant.ErrorCodeEnum;
 import tk.yimiao.yimiaocloud.common.constant.GlobalErrorCodeEnum;
 
 /**
- *
  * @param <T>
  */
 public class RestResultBuilder<T> {

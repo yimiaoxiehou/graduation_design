@@ -2,7 +2,6 @@ package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Data

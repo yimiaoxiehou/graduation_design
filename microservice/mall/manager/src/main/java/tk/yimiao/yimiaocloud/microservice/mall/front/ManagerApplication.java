@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = "tk.yimiao.yimiaocloud")
 @MapperScan("tk.yimiao.yimiaocloud.microservice.mall.base.mapper")
 public class ManagerApplication {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(ManagerApplication.class, args);
     }
 }

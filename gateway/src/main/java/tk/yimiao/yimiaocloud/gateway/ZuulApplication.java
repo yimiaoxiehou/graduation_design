@@ -7,11 +7,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
+ * @author yimiao
+ * @version V1.0
  * @Package PACKAGE_NAME
  * @Description: TODO
- * @author yimiao
  * @date 2019-03-02 23:14
- * @version V1.0
  */
 
 @SpringBootApplication
@@ -19,7 +19,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @Slf4j
 @EnableZuulProxy
 public class ZuulApplication {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(ZuulApplication.class, args);
         log.info("Spring-cloud-zuul-service start");
     }

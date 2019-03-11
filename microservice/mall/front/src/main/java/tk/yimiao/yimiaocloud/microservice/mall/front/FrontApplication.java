@@ -10,11 +10,12 @@ package tk.yimiao.yimiaocloud.microservice.mall.front;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(scanBasePackages = "tk.yimiao.yimiaocloud")
+@SpringBootApplication(scanBasePackages = "tk.yimiao.yimiaocloud", exclude = {DataSourceAutoConfiguration.class})
 @MapperScan("tk.yimiao.yimiaocloud.microservice.mall.base.mapper")
 public class FrontApplication {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(FrontApplication.class, args);
     }
 }

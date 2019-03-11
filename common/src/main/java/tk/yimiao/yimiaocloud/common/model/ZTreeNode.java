@@ -3,7 +3,6 @@ package tk.yimiao.yimiaocloud.common.model;
 import java.io.Serializable;
 
 /**
- *
  * @author Exrick
  * @date 2017/8/2
  */

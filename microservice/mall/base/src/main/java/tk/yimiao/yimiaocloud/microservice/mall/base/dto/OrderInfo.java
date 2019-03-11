@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Exrickx
  */
-public class OrderInfo implements Serializable{
+public class OrderInfo implements Serializable {
 
     private String userId;
 
@@ -20,6 +20,7 @@ public class OrderInfo implements Serializable{
     private String streetName;
 
     private BigDecimal orderTotal;
+    private List<CartProduct> goodsList;
 
     public BigDecimal getOrderTotal() {
         return orderTotal;
@@ -28,8 +29,6 @@ public class OrderInfo implements Serializable{
     public void setOrderTotal(BigDecimal orderTotal) {
         this.orderTotal = orderTotal;
     }
-
-    private List<CartProduct> goodsList;
 
     public String getUserId() {
         return userId;

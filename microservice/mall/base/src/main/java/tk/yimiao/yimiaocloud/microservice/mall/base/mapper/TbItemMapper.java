@@ -28,4 +28,6 @@ public interface TbItemMapper {
     int updateByPrimaryKeySelective(TbItem record);
 
     int updateByPrimaryKey(TbItem record);
+
+    List<TbItem> selectItemFront(Long cid, String orderCol, String orderDir, int priceGt, int priceLte);
 }

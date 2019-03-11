@@ -59,8 +59,8 @@ public class HmacSha1Util {
         return sb.toString();
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(getSignature("瓦尔环球网卡"));
-    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(getSignature("瓦尔环球网卡"));
+//    }
 }
