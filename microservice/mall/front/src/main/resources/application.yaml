@@ -1,11 +1,15 @@
 %YAML 1.2
 ---
 server:
-  port: 7777
+  port: 17777
 
 spring:
   application:
-    name: microservice-gateway-zuul
+    name: microservice-mall-front
+    #  security:
+    #    user:
+    #      name: admin
+    #      password: admin
     # spring 数据连接池配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -32,9 +36,19 @@ spring:
         login-username: root
         login-password: root
   redis:
-    host: localhost
+    host: redis.yimiao.tk
     port: 6379
 # http://localhost:8765/druid/sql.html  访问这个页面
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka.yimiao.tk:8761/eureka/
+  instance:
+    status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
+
+swagger:
+  enabled: true
 
 mybatis:
   mapper-locations: classpath:tk.yimiao.yimiaocloud.microservice.mall.base.pojo/*.xml
@@ -42,5 +56,7 @@ mybatis:
 # session 过期时间
 session:
   expire: 1800
+
+
 
 

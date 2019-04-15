@@ -43,6 +43,7 @@ public class HttpUtil {
         try {
             HttpGet httpGet = new HttpGet(url);
             httpGet.setHeader("User-Agent", userAgent);
+            httpGet.setHeader("Accept", "application/json");
             response = httpclient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -82,6 +83,7 @@ public class HttpUtil {
         HttpPost httpPost = new HttpPost(url);
         // 防止被当成攻击添加的
         httpPost.setHeader("User-Agent", userAgent);
+        httpPost.setHeader("Accept", "application/json");
         // 参数放入Entity
         httpPost.setEntity(formEntity);
         CloseableHttpResponse response = null;

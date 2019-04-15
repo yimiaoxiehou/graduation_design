@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.base.exception
- * @Description: TODO
+ * @Description: 全局异常代码
  * @author yimiao
  * @date 2019-03-05 14:25
  * @version V1.0
@@ -24,13 +24,15 @@ public enum GlobalErrorCodeEnum implements ErrorCodeEnum {
     METHOD_NOT_ALLOWED(405, "Method Not Allowed"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
-    MONGO_COLLECTION_NOT_EXIT(3301, "MONGO COLLECTION NOT EXIST"),
 
     INVALID_PARAM(100, "参数错误"),
     UNSUPPORT_IMAGE_TYPE(110, "不支持的图片格式"),
     UNSUPPORT_STORE_PATH(111, "找不到文件"),
 
-    UNLOGIN(121,"未登录"),
+    /**
+     * User Error Code;
+     */
+    UNLOGIN(121, "未登录"),
     USER_NOT_FOUND(122, "用户不存在"),
     USER_UPDATE_FAIL(123, "用户信息更新失败"),
 

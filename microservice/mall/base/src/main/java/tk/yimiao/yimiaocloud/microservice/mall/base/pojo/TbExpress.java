@@ -1,7 +1,11 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class TbExpress {
     private Integer id;
 
@@ -9,47 +13,13 @@ public class TbExpress {
 
     private Integer sortOrder;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date created;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updated;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getExpressName() {
-        return expressName;
-    }
 
     public void setExpressName(String expressName) {
         this.expressName = expressName == null ? null : expressName.trim();
-    }
-
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
     }
 }

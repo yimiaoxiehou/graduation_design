@@ -1,13 +1,11 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbAddress;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbAddressExample;
 
 import java.util.List;
 
-@Mapper
 public interface TbAddressMapper {
     long countByExample(TbAddressExample example);
 

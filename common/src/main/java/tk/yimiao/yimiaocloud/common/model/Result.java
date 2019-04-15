@@ -1,6 +1,5 @@
 package tk.yimiao.yimiaocloud.common.model;
 
-
 import java.io.Serializable;
 
 /**

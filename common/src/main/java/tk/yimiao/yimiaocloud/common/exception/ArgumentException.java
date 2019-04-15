@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.base.exception
- * @Description: TODO
+ * @Description: 自定义参数异常
  * @author yimiao
  * @date 2019-03-05 14:31
  * @version V1.0

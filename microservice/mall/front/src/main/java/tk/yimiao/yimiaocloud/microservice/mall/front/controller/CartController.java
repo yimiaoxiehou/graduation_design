@@ -18,7 +18,7 @@ import tk.yimiao.yimiaocloud.common.model.Result;
 import tk.yimiao.yimiaocloud.common.util.ResultUtil;
 import tk.yimiao.yimiaocloud.microservice.mall.base.dto.Cart;
 import tk.yimiao.yimiaocloud.microservice.mall.base.dto.CartProduct;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.CartService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.CartService;
 
 import java.util.List;
 

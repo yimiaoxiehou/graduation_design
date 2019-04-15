@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: microservice-gateway-zuul
-#  security:
 #    user:
 #      name: admin
 #      password: admin
@@ -12,18 +11,34 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka.yimiao.tk:8761/eureka/
   instance:
-    status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
+    status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
 
 zuul:
   routes:
-    microservice-provider-user: /user/** #配置指定的微服务服务路径
+    microservice-mall-front: /front/** #配置指定的微服务服务路径
+    microservice-mall-manager: /manager/**
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  retryable: true
 
+ribbon:
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
 
-logging:
-  level:
-    com.netflix: DEBUG #设置netflix包的日志为debug
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+#
+#logging:
+#  level:
+#    com.netflix: DEBUG #设置netflix包的日志为debug
 
 management:
   endpoints:
@@ -31,6 +46,4 @@ management:
       exposure:
         include: '*'
 
-swagger:
-  enabled: true
 

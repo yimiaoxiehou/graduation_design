@@ -160,7 +160,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public void del(String key) {
-        log.info(log_info+String.format("del {%s}",key));
+        log.info(log_info + String.format("del {%s}", key));
         try (Jedis jedis = pool.getResource()) {
             jedis.del(key);
         } catch (Exception e) {
@@ -169,7 +169,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public String get(String key) {
-        log.info(log_info+String.format("get {%s}",key));
+        log.info(log_info + String.format("get {%s}", key));
         try (Jedis jedis = pool.getResource()) {
             return jedis.get(key);
         } catch (Exception e) {
@@ -179,7 +179,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public void set(String key, String value) {
-        log.info(log_info+String.format("set {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("set {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             jedis.set(key, value);
         } catch (Exception e) {
@@ -188,7 +188,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long sadd(String key, String value) {
-        log.info(log_info+String.format("sadd {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("sadd {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             return jedis.sadd(key, value);
         } catch (Exception e) {
@@ -198,7 +198,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public String spop(String key) {
-        log.info(log_info+String.format("spop {%s}",key));
+        log.info(log_info + String.format("spop {%s}", key));
         try (Jedis jedis = pool.getResource()) {
             return jedis.spop(key);
         } catch (Exception e) {
@@ -208,7 +208,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long expire(String key, int seconds) {
-        log.info(log_info+String.format("expire {%s} {%d}",key,seconds));
+        log.info(log_info + String.format("expire {%s} {%d}", key, seconds));
         try (Jedis jedis = pool.getResource()) {
             return jedis.expire(key, seconds);
         } catch (Exception e) {
@@ -219,7 +219,7 @@ public class JedisUtil implements InitializingBean {
 
 
     public long srem(String key, String value) {
-        log.info(log_info+String.format("srem {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("srem {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             return jedis.srem(key, value);
         } catch (Exception e) {
@@ -229,7 +229,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long scard(String key) {
-        log.info(log_info+String.format("scard {%s}",key));
+        log.info(log_info + String.format("scard {%s}", key));
         try (Jedis jedis = pool.getResource()) {
             return jedis.scard(key);
         } catch (Exception e) {
@@ -239,7 +239,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public boolean sismember(String key, String value) {
-        log.info(log_info+String.format("sismember {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("sismember {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             return jedis.sismember(key, value);
         } catch (Exception e) {
@@ -249,7 +249,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public List<String> brpop(int timeout, String key) {
-        log.info(log_info+String.format("brpop {%d} {%s}",timeout,key));
+        log.info(log_info + String.format("brpop {%d} {%s}", timeout, key));
         try (Jedis jedis = pool.getResource()) {
             return jedis.brpop(timeout, key);
         } catch (Exception e) {
@@ -259,7 +259,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public List<String> hvals(String key) {
-        log.info(log_info+String.format("hvals {%s}",key));
+        log.info(log_info + String.format("hvals {%s}", key));
         try (Jedis jedis = pool.getResource()) {
             return jedis.hvals(key);
         } catch (Exception e) {
@@ -269,7 +269,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public String hget(String key, String field) {
-        log.info(log_info+String.format("hget {%s} {%s}",key,field));
+        log.info(log_info + String.format("hget {%s} {%s}", key, field));
         try (Jedis jedis = pool.getResource()) {
             return jedis.hget(key, field);
         } catch (Exception e) {
@@ -279,7 +279,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public Boolean hexists(String key, String field) {
-        log.info(log_info+String.format("hexists {%s} {%s}",key,field));
+        log.info(log_info + String.format("hexists {%s} {%s}", key, field));
         try (Jedis jedis = pool.getResource()) {
             return jedis.hexists(key, field);
         } catch (Exception e) {
@@ -289,7 +289,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public void hset(String key, String field, String value) {
-        log.info(log_info+String.format("hset {%s} {%s} {%s}",key,value,sub(value)));
+        log.info(log_info + String.format("hset {%s} {%s} {%s}", key, value, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             jedis.hset(key, field, value);
         } catch (Exception e) {
@@ -299,7 +299,7 @@ public class JedisUtil implements InitializingBean {
 
 
     public void hdel(String key, String value) {
-        log.info(log_info+String.format("hdel {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("hdel {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             jedis.hdel(key, value);
         } catch (Exception e) {
@@ -308,7 +308,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public void hdel(String key, String[] values) {
-        log.info(log_info+String.format("hdel {%s} ",key), values);
+        log.info(log_info + String.format("hdel {%s} ", key), values);
         try (Jedis jedis = pool.getResource()) {
             jedis.hdel(key, values);
         } catch (Exception e) {
@@ -317,7 +317,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long lpush(String key, String value) {
-        log.info(log_info+String.format("lpush {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("lpush {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             return jedis.lpush(key, value);
         } catch (Exception e) {
@@ -327,7 +327,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public List<String> lrange(String key, int start, int end) {
-        log.info(log_info+String.format("lrange {%s} {%d} {%d}",key,start,end));
+        log.info(log_info + String.format("lrange {%s} {%d} {%d}", key, start, end));
         try (Jedis jedis = pool.getResource()) {
             return jedis.lrange(key, start, end);
         } catch (Exception e) {
@@ -337,7 +337,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long zadd(String key, double score, String value) {
-        log.info(log_info+String.format("zadd {%s} {%f} {%s}",key,score,sub(value)));
+        log.info(log_info + String.format("zadd {%s} {%f} {%s}", key, score, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             return jedis.zadd(key, score, value);
         } catch (Exception e) {
@@ -347,7 +347,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long zrem(String key, String value) {
-        log.info(log_info+String.format("zrem {%s} {%s}",key,sub(value)));
+        log.info(log_info + String.format("zrem {%s} {%s}", key, sub(value)));
         try (Jedis jedis = pool.getResource()) {
             return jedis.zrem(key, value);
         } catch (Exception e) {
@@ -387,7 +387,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public Set<String> zrange(String key, int start, int end) {
-        log.info(log_info+String.format("zrange {%s} {%d} {%d}",key,start,end));
+        log.info(log_info + String.format("zrange {%s} {%d} {%d}", key, start, end));
         try (Jedis jedis = pool.getResource()) {
             return jedis.zrange(key, start, end);
         } catch (Exception e) {
@@ -397,7 +397,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public Set<String> zrevrange(String key, int start, int end) {
-        log.info(log_info+String.format("zrevrange {%s} {%d} {%d}",key,start,end));
+        log.info(log_info + String.format("zrevrange {%s} {%d} {%d}", key, start, end));
         try (Jedis jedis = pool.getResource()) {
             return jedis.zrevrange(key, start, end);
         } catch (Exception e) {
@@ -407,7 +407,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public long zcard(String key) {
-        log.info(log_info+String.format("zcard {%s}",key));
+        log.info(log_info + String.format("zcard {%s}", key));
         try (Jedis jedis = pool.getResource()) {
             return jedis.zcard(key);
         } catch (Exception e) {
@@ -417,7 +417,7 @@ public class JedisUtil implements InitializingBean {
     }
 
     public Double zscore(String key, String member) {
-        log.info(log_info+String.format("zscore {%s} {%s}",key,member));
+        log.info(log_info + String.format("zscore {%s} {%s}", key, member));
         try (Jedis jedis = pool.getResource()) {
             return jedis.zscore(key, member);
         } catch (Exception e) {
@@ -425,12 +425,11 @@ public class JedisUtil implements InitializingBean {
         }
         return null;
     }
-    
-    private String sub(String s){
-        if (s.length() > 50){
-            return s.substring(0,50)+"...";
-        }
-        else
+
+    private String sub(String s) {
+        if (s.length() > 50) {
+            return s.substring(0, 50) + "...";
+        } else
             return s;
     }
 }

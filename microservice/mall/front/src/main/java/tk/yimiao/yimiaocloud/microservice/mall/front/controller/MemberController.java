@@ -21,9 +21,9 @@ import tk.yimiao.yimiaocloud.common.util.ResultUtil;
 import tk.yimiao.yimiaocloud.microservice.mall.base.dto.CommonDto;
 import tk.yimiao.yimiaocloud.microservice.mall.base.dto.Member;
 import tk.yimiao.yimiaocloud.microservice.mall.base.dto.MemberLoginRegist;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.LoginService;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.MemberService;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.RegisterService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.LoginService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.MemberService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.RegisterService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

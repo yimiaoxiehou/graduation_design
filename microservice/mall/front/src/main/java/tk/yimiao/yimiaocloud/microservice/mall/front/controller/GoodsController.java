@@ -21,8 +21,8 @@ import tk.yimiao.yimiaocloud.microservice.mall.base.dto.ProductDet;
 import tk.yimiao.yimiaocloud.microservice.mall.base.dto.SearchResult;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbPanel;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbPanelContent;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.ContentService;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.SearchService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.ContentService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.SearchService;
 
 import java.util.List;
 

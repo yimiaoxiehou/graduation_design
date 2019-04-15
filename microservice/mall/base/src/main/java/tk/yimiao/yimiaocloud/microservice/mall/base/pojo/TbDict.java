@@ -1,5 +1,9 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 
+
+import lombok.Data;
+
+@Data
 public class TbDict {
     private Integer id;
 
@@ -7,27 +11,8 @@ public class TbDict {
 
     private Integer type;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDict() {
-        return dict;
-    }
-
     public void setDict(String dict) {
         this.dict = dict == null ? null : dict.trim();
     }
 
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
 }

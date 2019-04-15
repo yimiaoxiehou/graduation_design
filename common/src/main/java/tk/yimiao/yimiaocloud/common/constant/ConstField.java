@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.constant
- * @Description: TODO
+ * @Description: 常量标签
  * @author yimiao
  * @date 2019-03-08 16:07
  * @version V1.0

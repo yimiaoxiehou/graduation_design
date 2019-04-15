@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.util
- * @Description: TODO
+ * @Description: 邮件工具
  * @author yimiao
  * @date 2019-03-07 00:56
  * @version V1.0
@@ -23,7 +23,7 @@ public class EmailUtil {
     public static final String SYSTEM_NAME = " [YimiaoMail] ";
     private static Logger log = LoggerFactory.getLogger(EmailUtil.class);
 
-    public static boolean sendMail(String emailAddress, String content, EmailSubjectEnum emailSubjectEnum) {
+    public static boolean sendEmail(String emailAddress, String content, EmailSubjectEnum emailSubjectEnum) {
         try {
             HtmlEmail email = new HtmlEmail();
             // smtp 地址
@@ -44,6 +44,9 @@ public class EmailUtil {
                     break;
                 case PAY_CHECK:
                     email.setMsg(content);
+                    break;
+                default:
+                    email.setMsg(content);
             }
             email.send();
             log.info(String.format("邮件发送成功。 收件人 : { %s }, 主题 : { %s }, 内容 : { %s }", emailAddress, email.getSubject(), content));
@@ -54,6 +57,21 @@ public class EmailUtil {
         }
     }
 
+    /**
+     * 匹配邮箱格式 xxx@xxx.xxx
+     *
+     * @param email
+     * @return
+     */
+    public static boolean checkEmail(String email) {
+        if (!email.isEmpty()) {
+            String[] s = email.split("@");
+            if (s.length == 2) {
+                return s[1].split(".").length == 2;
+            }
+        }
+        return false;
+    }
 
 //    public static void main(String[] args) {
 //

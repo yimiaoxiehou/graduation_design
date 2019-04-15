@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.constant
- * @Description: TODO
+ * @Description: redis 主键
  * @author yimiao
  * @date 2019-03-08 20:18
  * @version V1.0
@@ -19,7 +19,8 @@ public enum RedisKeyEnum {
     RECOMEED_PANEL("recomeed_panel"),
     THANK_PANEL("thank_panel"),
     HEADER_PANEL("header_panel"),
-    SESSION_EXPIRE_TIME(1800);
+    SESSION_EXPIRE_TIME(1800),
+    HASLOGIN_PRE("login:");
 
     private String key;
     private int time;

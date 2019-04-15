@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tk.yimiao.yimiaocloud.common.model.Result;
 import tk.yimiao.yimiaocloud.common.util.ResultUtil;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbAddress;
-import tk.yimiao.yimiaocloud.microservice.mall.front.service.AddressService;
+import tk.yimiao.yimiaocloud.microservice.mall.base.service.AddressService;
 
 import java.util.List;
 

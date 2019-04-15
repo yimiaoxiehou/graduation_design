@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.base.exception.handler
- * @Description: TODO
+ * @Description: 异常处理，通过 @RestControllerAdvice 和 @ExceptionHandler 注入到 spring 的异常处理体系
  * @author yimiao
  * @date 2019-03-05 14:33
  * @version V1.0

@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.util
- * @Description: TODO
+ * @Description: 时间工具
  * @author yimiao
  * @date 2019-03-07 14:57
  * @version V1.0
@@ -310,5 +310,82 @@ public class DateUtil {
      */
     public static long spendMs(long preTime) {
         return System.currentTimeMillis() - preTime;
+    }
+
+    public static Date beginOfDay(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        return calendar.getTime();
+    }
+
+    public static Date endOfDay(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        return calendar.getTime();
+    }
+
+    public static Date getDayOf(Date date, int field, int value) {
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+        calendar.set(field, value);
+        return calendar.getTime();
+
+    }
+
+    public static Date getBeginDayOfWeek() {
+        return getDayOf(null, Calendar.DAY_OF_WEEK, 1);
+    }
+
+    public static Date getEndDayOfWeek() {
+        return getDayOf(null, Calendar.DAY_OF_WEEK, 0);
+    }
+
+    public static Date getEndDayOfMonth() {
+        return getDayOf(null, Calendar.DAY_OF_MONTH, Calendar.getInstance().getMaximum(Calendar.DAY_OF_MONTH));
+    }
+
+    public static Date getBeginDayOfMonth() {
+        return getDayOf(null, Calendar.DAY_OF_MONTH, 1);
+    }
+
+    public static Date getEndDayOfLastMonth() {
+        return getDayOf(null, Calendar.DAY_OF_MONTH, 0);
+    }
+
+    public static Date getBeginDayOfLastMonth() {
+        return getDayOf(getEndDayOfLastMonth(), Calendar.DAY_OF_MONTH, 1);
+    }
+
+    public static boolean isSameDay(Date day1, Date day2) {
+        Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        calendar1.setTime(day1);
+        calendar2.setTime(day2);
+        return calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR) &&
+                calendar1.get(Calendar.DAY_OF_YEAR) == calendar2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public static Date getBeginDayOfYear(int year) {
+        return getDayOf(getDayOf(null, Calendar.YEAR, year), Calendar.DAY_OF_YEAR, 0);
+    }
+
+    public static int month(Date date) {
+        return getValueOf(date, Calendar.MONTH);
+    }
+
+    public static int getValueOf(Date date, int field) {
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+        return calendar.get(field);
     }
 }

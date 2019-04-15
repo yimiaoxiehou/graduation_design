@@ -18,25 +18,25 @@ public class DtoUtil {
 
         TbMember tbMember = new TbMember();
 
-        if (!memberDto.getUsername().isEmpty()) {
+        if (memberDto.getUsername() != null && !memberDto.getUsername().isEmpty()) {
             tbMember.setUsername(memberDto.getUsername());
         }
-        if (!memberDto.getPassword().isEmpty()) {
+        if (memberDto.getPassword() != null && !memberDto.getPassword().isEmpty()) {
             tbMember.setPassword(memberDto.getPassword());
         }
-        if (!memberDto.getPhone().isEmpty()) {
+        if (memberDto.getPhone() != null && !memberDto.getPhone().isEmpty()) {
             tbMember.setPhone(memberDto.getPhone());
         }
-        if (!memberDto.getEmail().isEmpty()) {
+        if (memberDto.getEmail() != null && !memberDto.getEmail().isEmpty()) {
             tbMember.setEmail(memberDto.getEmail());
         }
-        if (!memberDto.getSex().isEmpty()) {
+        if (memberDto.getSex() != null && !memberDto.getSex().isEmpty()) {
             tbMember.setSex(memberDto.getSex());
         }
-        if (!memberDto.getDescription().isEmpty()) {
+        if (memberDto.getDescription() != null && !memberDto.getDescription().isEmpty()) {
             tbMember.setDescription(memberDto.getDescription());
         }
-        if (!memberDto.getProvince().isEmpty()) {
+        if (memberDto.getProvince() != null && !memberDto.getProvince().isEmpty()) {
             tbMember.setAddress(memberDto.getProvince() + " "
                     + memberDto.getCity() + " " + memberDto.getDistrict());
         }
@@ -145,6 +145,7 @@ public class DtoUtil {
         member.setPoints(tbMemer.getPoints());
         member.setSex(tbMemer.getSex());
         member.setDescription(tbMemer.getDescription());
+        member.setState(tbMemer.getState());
 
         return member;
     }

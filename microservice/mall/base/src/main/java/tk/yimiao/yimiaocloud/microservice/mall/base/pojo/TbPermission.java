@@ -1,5 +1,9 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 
+
+import lombok.Data;
+
+@Data
 public class TbPermission {
     private Integer id;
 
@@ -7,24 +11,8 @@ public class TbPermission {
 
     private String permission;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getPermission() {
-        return permission;
     }
 
     public void setPermission(String permission) {

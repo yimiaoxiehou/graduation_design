@@ -5,6 +5,7 @@ import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbUser;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbUserExample;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TbUserMapper {
     long countByExample(TbUserExample example);
@@ -28,4 +29,10 @@ public interface TbUserMapper {
     int updateByPrimaryKeySelective(TbUser record);
 
     int updateByPrimaryKey(TbUser record);
+
+    Set<String> getRoles(@Param("username") String username);
+
+    Set<String> getPermissions(@Param("username") String username);
+
+    List<String> getPermsByRoleId(@Param("id") int id);
 }

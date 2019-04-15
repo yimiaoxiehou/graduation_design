@@ -1,5 +1,6 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ public class TbThanks {
 
     private String info;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date date;
 
     private String email;

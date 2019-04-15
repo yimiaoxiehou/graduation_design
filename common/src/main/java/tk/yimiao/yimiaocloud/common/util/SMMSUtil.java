@@ -8,7 +8,6 @@
 package tk.yimiao.yimiaocloud.common.util;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -35,10 +34,10 @@ public class SMMSUtil {
                     .addPart("smfile", bin)
                     .build();
             HttpPost request = new HttpPost("https://sm.ms/api/upload");
-            request.addHeader(new BasicHeader("user-agent",USER_AGENT));
+            request.addHeader(new BasicHeader("user-agent", USER_AGENT));
             request.setEntity(reqEntity);
             HttpResponse result = httpClient.execute(request);
-            if (result.getStatusLine().getStatusCode() != 200){
+            if (result.getStatusLine().getStatusCode() != 200) {
                 return null;
             }
             String json = EntityUtils.toString(result.getEntity(), "UTF-8");
@@ -58,16 +57,17 @@ public class SMMSUtil {
         byte[] bytes = decoder.decodeBuffer(String.valueOf(imgStr));
 
         File imageFile = new File("/Users/yimiao/Downloads/temp.jpg");
-        if(!imageFile.exists()){
+        if (!imageFile.exists()) {
             imageFile.createNewFile();
         }
-        try(OutputStream imageStream = new FileOutputStream(imageFile)) {
+        try (OutputStream imageStream = new FileOutputStream(imageFile)) {
             imageStream.write(bytes);
             imageStream.flush();
         }
-        System.out.println(imageFile.getName());;
+        System.out.println(imageFile.getName());
+        ;
 
-        return imageUpload(userId,token,imageFile);
+        return imageUpload(userId, token, imageFile);
     }
 
 
@@ -82,8 +82,7 @@ public class SMMSUtil {
             data = new byte[in.available()];
             in.read(data);
             in.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -92,6 +91,6 @@ public class SMMSUtil {
         String s = encoder.encode(data);
         System.out.println(s);
 
-        System.out.println(JSON.toJSONString(imageUpload(12L,"",s)));
+        System.out.println(JSON.toJSONString(imageUpload(12L, "", s)));
     }
 }

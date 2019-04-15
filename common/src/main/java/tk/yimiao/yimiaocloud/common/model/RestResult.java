@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.base.exception.model
- * @Description: TODO
+ * @Description: rest 返回数据模型
  * @author yimiao
  * @date 2019-03-05 14:56
  * @version V1.0

@@ -11,16 +11,19 @@
 
     <artifactId>front</artifactId>
     <groupId>tk.yimiao.yimiaocloud.microservice.mall.front</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>tk.yimiao.yimiaocloud.microservice.mall.base</groupId>
             <artifactId>base</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>tk.yimiao.yimiaocloud.common</groupId>
@@ -28,37 +31,7 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.20</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.20</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>6.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>transport</artifactId>
-            <version>6.2.3</version>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -83,6 +56,65 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Docker maven plugin -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <serverId>docker-hub</serverId>
+                    <registerUrl>https://hub.docker.com/_/registry</registerUrl>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+                <executions>
+                    <!--绑定 mvn docker:build 到 mvn package-->
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <!--绑定 mvn docker:tag 到 mvn package-->
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${project.artifactId}:${project.version}</image>
+                            <newName>registry.example.com/${project.artifactId}:${project.version}</newName>
+                        </configuration>
+                    </execution>
+                    <!-- 绑定 mvn docker:push 到 mvn deploy -->
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <imageName>registry.example.com/${project.artifactId}:${project.version}</imageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Docker maven plugin -->
+        </plugins>
     </build>
 
 </project>

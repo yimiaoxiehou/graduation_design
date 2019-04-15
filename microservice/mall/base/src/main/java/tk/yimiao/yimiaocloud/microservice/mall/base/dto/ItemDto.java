@@ -1,5 +1,7 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,8 +33,10 @@ public class ItemDto implements Serializable {
 
     private Byte status;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date created;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updated;
 
     public Integer getLimitNum() {

@@ -1,6 +1,6 @@
 /**
  * @Package tk.yimiao.yimiaocloud.common.model
- * @Description: TODO
+ * @Description: SM.MS 图床的返回数据模式
  * @author yimiao
  * @date 2019-03-11 17:47
  * @version V1.0
@@ -19,7 +19,7 @@ public class SMMSResponse {
     Data data;
 
     @lombok.Data
-    public class Data{
+    public class Data {
         /**
          * 上传文件时所用的文件名
          */

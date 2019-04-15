@@ -1,8 +1,10 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 public class TbItemCatExample {
     protected String orderByClause;

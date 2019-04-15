@@ -3,6 +3,7 @@ package tk.yimiao.yimiaocloud.microservice.mall.base.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TbBaseExample {
     protected String orderByClause;
 

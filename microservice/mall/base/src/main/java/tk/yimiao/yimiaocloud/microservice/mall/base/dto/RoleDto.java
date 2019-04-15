@@ -1,6 +1,5 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.dto;
 
-
 import java.io.Serializable;
 
 /**

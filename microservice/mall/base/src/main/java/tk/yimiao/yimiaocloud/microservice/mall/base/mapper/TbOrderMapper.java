@@ -1,9 +1,11 @@
 package tk.yimiao.yimiaocloud.microservice.mall.base.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import tk.yimiao.yimiaocloud.microservice.mall.base.dto.OrderChartData;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbOrder;
 import tk.yimiao.yimiaocloud.microservice.mall.base.pojo.TbOrderExample;
 
+import java.util.Date;
 import java.util.List;
 
 public interface TbOrderMapper {
@@ -28,4 +30,10 @@ public interface TbOrderMapper {
     int updateByPrimaryKeySelective(TbOrder record);
 
     int updateByPrimaryKey(TbOrder record);
+
+    List<TbOrder> selectByMulti(@Param("search") String search, @Param("orderCol") String orderCol, @Param("orderDir") String orderDir);
+
+    List<OrderChartData> selectOrderChart(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
+
+    List<OrderChartData> selectOrderChartByYear(@Param("year") int year);
 }
