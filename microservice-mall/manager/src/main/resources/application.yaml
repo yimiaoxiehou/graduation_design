@@ -1,11 +1,11 @@
 %YAML 1.2
 ---
 server:
-  port: 7778
+  port: ${PORT}
 
 spring:
   profiles:
-    active: dev
+    active: release
   application:
     name: microservice-mall-manager
     #  security:
@@ -94,3 +94,4 @@ eureka:
     status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
     prefer-ip-address: true
     instance-id: ${HOST_NAME}:${PORT}
+    ip-address: ${HOST_NAME}

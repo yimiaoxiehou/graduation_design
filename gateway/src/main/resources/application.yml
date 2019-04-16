@@ -6,7 +6,7 @@ spring:
     name: microservice-gateway-zuul
 
 server:
-  port: 8640
+  port: ${PORT}
 
 zuul:
   routes:
@@ -66,3 +66,4 @@ eureka:
     status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
     prefer-ip-address: true
     instance-id: ${HOST_NAME}:${PORT}
+    ip-address: ${HOST_NAME}
