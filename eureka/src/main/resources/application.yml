@@ -8,15 +8,12 @@ server:
   port: ${PORT}
 
 
----
-spring:
-  profiles: dev
 eureka:
   client:
     # 是否同步其他eureka节点数据 单个时关闭
     register-with-eureka: false
-    # 不注册自己
-    fetch-registry: false
+    # 注册自己
+    fetch-registry: true
     service-url:
       # 默认交互地址 多个以逗号分隔
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
@@ -34,24 +31,8 @@ eureka:
 
 ---
 spring:
+  profiles: dev
+
+---
+spring:
   profiles: release
-eureka:
-  client:
-    # 是否同步其他eureka节点数据 单个时关闭
-    register-with-eureka: false
-    # 注册自己
-    fetch-registry: true
-    service-url:
-      # 默认交互地址 多个以逗号分隔
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-    healthcheck:
-      enabled: true
-  instance:
-    prefer-ip-address: true
-    hostname: localhost
-    ip-address: ${HOST_NAME}}
-  server:
-    # 关闭保护机制 生产环境建议开启
-    enable-self-preservation: false
-    # 间隔多久拉取服务注册信息 默认30秒
-    eviction-interval-timer-in-ms: 5000
