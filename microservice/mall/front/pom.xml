@@ -68,7 +68,6 @@
                 <version>1.2.0</version>
                 <configuration>
                     <serverId>docker-hub</serverId>
-                    <registerUrl>https://hub.docker.com/_/registry</registerUrl>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
@@ -98,17 +97,6 @@
                         <configuration>
                             <image>${project.artifactId}:${project.version}</image>
                             <newName>registry.example.com/${project.artifactId}:${project.version}</newName>
-                        </configuration>
-                    </execution>
-                    <!-- 绑定 mvn docker:push 到 mvn deploy -->
-                    <execution>
-                        <id>push-image</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>push</goal>
-                        </goals>
-                        <configuration>
-                            <imageName>registry.example.com/${project.artifactId}:${project.version}</imageName>
                         </configuration>
                     </execution>
                 </executions>

@@ -39,7 +39,7 @@ spring:
   jackson:
     date-format: java.text.SimpleDateFormat
   redis:
-    host: localhost
+    host: redis.yimiao.tk
     port: 6379
   # http://localhost:8765/druid/sql.html  访问这个页面
   activemq:

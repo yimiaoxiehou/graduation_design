@@ -85,7 +85,6 @@
                 <version>1.2.0</version>
                 <configuration>
                     <serverId>docker-hub</serverId>
-                    <registerUrl>https://hub.docker.com/_/registry</registerUrl>
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>

@@ -19,6 +19,7 @@ eureka:
   instance:
     prefer-ip-address: true
     hostname: localhost
+    ip-address: ${}
   server:
     # 关闭保护机制 生产环境建议开启
     enable-self-preservation: false

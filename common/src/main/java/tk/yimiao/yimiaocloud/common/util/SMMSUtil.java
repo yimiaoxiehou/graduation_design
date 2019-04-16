@@ -17,11 +17,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 import tk.yimiao.yimiaocloud.common.model.SMMSResponse;
 
 import java.io.*;
+import java.util.Base64;
 
 public class SMMSUtil {
 
@@ -52,11 +51,11 @@ public class SMMSUtil {
 
     public static SMMSResponse imageUpload(Long userId, String token, String imgStr) throws IOException {
 
-        BASE64Decoder decoder = new BASE64Decoder();
+        Base64.Decoder decoder = Base64.getMimeDecoder();
 
-        byte[] bytes = decoder.decodeBuffer(String.valueOf(imgStr));
+        byte[] bytes = decoder.decode(imgStr);
 
-        File imageFile = new File("/Users/yimiao/Downloads/temp.jpg");
+        File imageFile = new File("temp.jpg");
         if (!imageFile.exists()) {
             imageFile.createNewFile();
         }
@@ -73,7 +72,7 @@ public class SMMSUtil {
 
     public static void main(String[] args) throws IOException {
         //待处理的图片
-        String imgFile = "/Users/yimiao/Downloads/bd76f48d70ac2578.jpg";
+        String imgFile = "/Volumes/Data/[森萝财团]SSR-009[83P]/001.jpg";
         InputStream in = null;
         byte[] data = null;
         //读取图片字节数组
@@ -86,9 +85,9 @@ public class SMMSUtil {
             e.printStackTrace();
         }
 
-        BASE64Encoder encoder = new BASE64Encoder();
+        Base64.Encoder encoder = Base64.getMimeEncoder();
 
-        String s = encoder.encode(data);
+        String s = encoder.encodeToString(data);
         System.out.println(s);
 
         System.out.println(JSON.toJSONString(imageUpload(12L, "", s)));
