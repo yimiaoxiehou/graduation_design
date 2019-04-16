@@ -1,20 +1,12 @@
-server:
-  port: 8640
-
+# 默认配置
 spring:
+  profiles:
+    active: dev
   application:
     name: microservice-gateway-zuul
-#    user:
-#      name: admin
-#      password: admin
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka.yimiao.tk:8761/eureka/
-  instance:
-    status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
-    prefer-ip-address: true
+server:
+  port: 8640
 
 zuul:
   routes:
@@ -47,4 +39,33 @@ management:
       exposure:
         include: '*'
 
+---
+spring:
+  profiles: dev
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
+    prefer-ip-address: true
+
+---
+spring:
+  profiles: release
+  cloud:
+    client:
+      ipAddress: zuul.yimiao.tk
+      user:
+      name: admin
+      password: admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka.yimiao.tk:8761/eureka/
+  instance:
+    status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}

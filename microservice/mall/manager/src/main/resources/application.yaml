@@ -3,8 +3,9 @@
 server:
   port: 7778
 
-
 spring:
+  profiles:
+    active: dev
   application:
     name: microservice-mall-manager
     #  security:
@@ -38,6 +39,44 @@ spring:
         login-password: root
   jackson:
     date-format: java.text.SimpleDateFormat
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: httptrace
+
+
+swagger:
+  enabled: true
+
+mybatis:
+  mapper-locations: classpath:tk.yimiao.yimiaocloud.microservice.mall.base.pojo/*.xml
+
+
+---
+spring:
+  profiles: dev
+  redis:
+    host: localhost
+    port: 6379
+  # http://localhost:8765/druid/sql.html  访问这个页面
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
+
+---
+spring:
+  profiles: release
   redis:
     host: redis.yimiao.tk
     port: 6379
@@ -47,25 +86,9 @@ spring:
     user: admin
     password: admin
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: httptrace
-
 eureka:
   client:
     service-url:
       defaultZone: http://eureka.yimiao.tk:8761/eureka/
   instance:
     status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
-
-swagger:
-  enabled: true
-
-mybatis:
-  mapper-locations: classpath:tk.yimiao.yimiaocloud.microservice.mall.base.pojo/*.xml
-
-
-
-

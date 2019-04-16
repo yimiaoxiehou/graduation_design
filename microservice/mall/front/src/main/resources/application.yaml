@@ -1,9 +1,12 @@
 %YAML 1.2
 ---
+# 默认配置
 server:
   port: 7777
 
 spring:
+  profiles:
+    active: dev
   application:
     name: microservice-mall-front
     #  security:
@@ -35,17 +38,6 @@ spring:
       stat-view-servlet:
         login-username: root
         login-password: root
-  redis:
-    host: redis.yimiao.tk
-    port: 6379
-# http://localhost:7777/druid/sql.html  访问这个页面
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka.yimiao.tk:8761/eureka/
-  instance:
-    status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
 
 swagger:
   enabled: true
@@ -57,6 +49,32 @@ mybatis:
 session:
   expire: 1800
 
+---
+spring:
+  profiles: dev
+  redis:
+    host: localhost
+    port: 6379
+    # http://localhost:7777/druid/sql.html  访问这个页面
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
 
+---
+spring:
+  profiles: release
+  redis:
+    host: redis.yimiao.tk
+    port: 6379
+    # http://localhost:7777/druid/sql.html  访问这个页面
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka.yimiao.tk:8761/eureka/
+  instance:
+    status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
