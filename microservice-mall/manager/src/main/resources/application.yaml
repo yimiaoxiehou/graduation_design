@@ -93,4 +93,4 @@ eureka:
   instance:
     status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
     prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    instance-id: ${HOST_NAME}:${PORT}

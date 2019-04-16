@@ -54,6 +54,9 @@ eureka:
 ---
 spring:
   profiles: release
+  cloud:
+    inetutils:
+      default-ip-address: zuul.yimiao.tk
 
 eureka:
   client:
@@ -62,4 +65,4 @@ eureka:
   instance:
     status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
     prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    instance-id: ${HOST_NAME}:${PORT}
