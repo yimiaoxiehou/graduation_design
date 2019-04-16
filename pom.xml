@@ -77,6 +77,11 @@
             <version>${mysql.version}</version>
         </dependency>
         <dependency>
+            <groupId>de.ixilon</groupId>
+            <artifactId>aws-aware-eureka-instance</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
