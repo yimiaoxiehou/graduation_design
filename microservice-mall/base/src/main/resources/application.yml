@@ -1,0 +1,12 @@
+elasticsearch:
+  ip: qq.yimiaohome.top
+  port: 9200
+  name: xmall
+
+---
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: release

@@ -27,7 +27,7 @@
       <module name="graduation_design" target="1.8" />
       <module name="mall" target="1.8" />
       <module name="manager" target="1.8" />
-      <module name="microservice" target="1.8" />
+      <module name="microservice-mall" target="1.8" />
       <module name="monitor" target="1.8" />
       <module name="zipkin" target="1.8" />
     </bytecodeTargetLevel>
