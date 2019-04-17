@@ -9,12 +9,9 @@
         <module name="gateway" />
         <module name="manager" />
         <module name="common" />
-        <module name="zipkin" />
-        <module name="auth" />
         <module name="eureka" />
         <module name="base" />
         <module name="front" />
-        <module name="monitor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
