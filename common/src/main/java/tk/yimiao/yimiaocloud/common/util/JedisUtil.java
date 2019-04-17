@@ -22,9 +22,9 @@ import java.util.Set;
 @Service
 public class JedisUtil implements InitializingBean {
 
-    @Value("127.0.0.1")
+    @Value("${spring.redis.host}")
     String host;
-    @Value("6379")
+    @Value("${spring.redis.port}")
     int port;
     private JedisPool pool;
     @Value("Redis log : ")

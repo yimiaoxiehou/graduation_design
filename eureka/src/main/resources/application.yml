@@ -1,9 +1,46 @@
 spring:
+  profiles:
+    active: dev
   application:
     name: microservice-eureka-server
 
+---
+spring:
+  profiles: dev
+
 server:
   port: 8761
+
+eureka:
+  client:
+    # 是否同步其他eureka节点数据 单个时关闭
+    register-with-eureka: false
+    # 注册自己
+    fetch-registry: false
+    instance:
+      prefer-ip-address: true
+      hostname: localhost
+      ip-address: 127.0.0.1
+    service-url:
+      # 默认交互地址 多个以逗号分隔
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+  server:
+    # 关闭保护机制 生产环境建议开启
+    enable-self-preservation: false
+    # 间隔多久拉取服务注册信息 默认30秒
+    eviction-interval-timer-in-ms: 5000
+  management:
+    security:
+      enabled: false
+
+---
+spring:
+  profiles: release
+
+server:
+  port: ${PORT}
 
 eureka:
   client:

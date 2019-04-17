@@ -1,12 +1,9 @@
 # 默认配置
 spring:
   profiles:
-    active: release
+    active: dev
   application:
     name: microservice-gateway-zuul
-
-server:
-  port: ${PORT}
 
 zuul:
   routes:
@@ -43,6 +40,9 @@ management:
 spring:
   profiles: dev
 
+server:
+  port: 8640
+
 eureka:
   client:
     service-url:
@@ -58,10 +58,13 @@ spring:
     inetutils:
       default-ip-address: zuul.yimiao.tk
 
+server:
+  port: ${PORT}
+
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka.yimiao.tk:8761/eureka/
+      defaultZone: http://${EUREK_HOST}:8761/eureka/
   instance:
     status-page-url-path: /actuator/health # 更改 eureka info 页面为 actuator health 页面
     prefer-ip-address: true
