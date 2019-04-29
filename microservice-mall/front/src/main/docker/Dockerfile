@@ -5,5 +5,6 @@ RUN bash -c 'touch /app.jar'
 ENV HOST_NAME=127.0.0.1
 ENV PORT=7777
 ENV PROFILE=release
+ENV EUREK_HOST=eureka.yimiaohome.top
 ENTRYPOINT ["java","-jar","-Dspring.profiles.active=${PROFILE}","/app.jar"]
 EXPOSE ${PORT}
