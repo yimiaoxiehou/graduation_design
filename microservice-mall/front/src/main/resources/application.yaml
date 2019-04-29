@@ -50,7 +50,7 @@ session:
 spring:
   profiles: dev
   redis:
-    host: redis.yimiao.tk
+    host: redis.yimiaohome.top
     port: 6379
     # http://localhost:7777/druid/sql.html  访问这个页面
 
@@ -70,7 +70,7 @@ eureka:
 spring:
   profiles: release
   redis:
-    host: redis.yimiao.tk
+    host: redis.yimiaohome.top
     port: 6379
     # http://localhost:7777/druid/sql.html  访问这个页面
 
@@ -80,7 +80,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka.yimiao.tk:8761/eureka/
+      defaultZone: http://eureka.yimiaohome.top:8761/eureka/
   instance:
     status-page-url-path: /swagger-ui.html # 更改 eureka info 页面为 swagger 页面
     prefer-ip-address: true
