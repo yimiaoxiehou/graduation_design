@@ -40,7 +40,7 @@ public class OrderController {
     @ApiOperation(value = "通过id获取订单")
     public Result<Order> getOrder(String orderId) {
 
-        Order order = orderService.getOrder(Long.valueOf(orderId));
+        Order order = orderService.getOrder(orderId);
         return new ResultUtil<Order>().setData(order);
     }
 
@@ -48,8 +48,8 @@ public class OrderController {
     @ApiOperation(value = "创建订单")
     public Result<Object> addOrder(@RequestBody OrderInfo orderInfo) {
 
-        Long orderId = orderService.createOrder(orderInfo);
-        return new ResultUtil<Object>().setData(orderId.toString());
+        String orderId = orderService.createOrder(orderInfo);
+        return new ResultUtil<Object>().setData(orderId);
     }
 
     @RequestMapping(value = "/member/cancelOrder", method = RequestMethod.POST)
@@ -64,7 +64,7 @@ public class OrderController {
     @ApiOperation(value = "删除订单")
     public Result<Object> delOrder(String orderId) {
 
-        int result = orderService.delOrder(Long.valueOf(orderId));
+        int result = orderService.delOrder(orderId);
         return new ResultUtil<Object>().setData(result);
     }
 

@@ -3,15 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/microservice-mall/base/base.iml" filepath="$PROJECT_DIR$/microservice-mall/base/base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/microservice-mall/base/base.iml" filepath="$PROJECT_DIR$/microservice-mall/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
-      <module fileurl="file://$PROJECT_DIR$/microservice-mall/front/front.iml" filepath="$PROJECT_DIR$/microservice-mall/front/front.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-mall/front/front.iml" filepath="$PROJECT_DIR$/microservice-mall/front/front.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/graduation_design.iml" filepath="$PROJECT_DIR$/graduation_design.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-mall/manager/manager.iml" filepath="$PROJECT_DIR$/microservice-mall/manager/manager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/microservice-mall/microservice-mall.iml" filepath="$PROJECT_DIR$/microservice-mall/microservice-mall.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-mall/microservice-mall.iml" filepath="$PROJECT_DIR$/microservice-mall/microservice-mall.iml" />
     </modules>
   </component>

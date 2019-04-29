@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Order implements Serializable {
 
-    private Long orderId;
+    private String orderId;
 
     private BigDecimal orderTotal;
 
@@ -38,7 +38,7 @@ public class Order implements Serializable {
 
         public Builder(TbOrder tbOrder) {
             order = new Order();
-            order.setOrderId(Long.valueOf(tbOrder.getOrderId()));
+            order.setOrderId(tbOrder.getOrderId());
             order.setOrderTotal(tbOrder.getPayment() != null ? tbOrder.getPayment() : BigDecimal.ZERO);
             order.setOrderStatus(String.valueOf(tbOrder.getStatus()));
         }

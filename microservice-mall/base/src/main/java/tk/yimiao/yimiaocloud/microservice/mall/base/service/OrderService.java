@@ -81,7 +81,7 @@ public class OrderService {
         tbOrders.forEach(
                 o -> {
                     // 根据 orderId 查询 order
-                    Order order = getOrder(Long.valueOf(o.getOrderId()));
+                    Order order = getOrder(o.getOrderId());
                     if (order != null) {
                         orders.add(order);
                     }
@@ -119,9 +119,9 @@ public class OrderService {
      * @param orderId
      * @return
      */
-    public Order getOrder(Long orderId) {
+    public Order getOrder(String orderId) {
 
-        TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(String.valueOf(orderId));
+        TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(orderId);
 
         // 查询为空，则抛出自定义错误
         if (tbOrder == null) {
@@ -138,9 +138,11 @@ public class OrderService {
         TbOrderShipping tbOrderShipping = tbOrderShippingMapper.selectByPrimaryKey(tbOrder.getOrderId());
 
         TbAddress tbAddress = new TbAddress();
-        tbAddress.setUserName(tbOrderShipping.getReceiverName());
-        tbAddress.setStreetName(tbOrderShipping.getReceiverAddress());
-        tbAddress.setTel(tbOrderShipping.getReceiverMobile());
+        if(tbOrderShipping!=null) {
+            tbAddress.setUserName(tbOrderShipping.getReceiverName());
+            tbAddress.setStreetName(tbOrderShipping.getReceiverAddress());
+            tbAddress.setTel(tbOrderShipping.getReceiverMobile());
+        }
 
         // 查询订单商品列表
         TbOrderItemExample tbOrderItemExample = new TbOrderItemExample();
@@ -180,7 +182,7 @@ public class OrderService {
      * @param orderInfo 订单信息
      * @return
      */
-    public Long createOrder(OrderInfo orderInfo) {
+    public String createOrder(OrderInfo orderInfo) {
 
         TbMember member = tbMemberMapper.selectByPrimaryKey(Long.valueOf(orderInfo.getUserId()));
         if (null == member) {
@@ -235,7 +237,9 @@ public class OrderService {
                         delCartItem.add(String.valueOf(cartProduct.getProductId()));
                     }
                 }
-                jedisUtil.hdel(key, (String[]) delCartItem.toArray());
+                if (delCartItem.size()>0) {
+                    jedisUtil.hdel(key, (String[]) delCartItem.toArray());
+                }
             } catch (Exception e) {
                 log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL.getMessage() + String.format(" userId is : {%s}", orderInfo.getUserId()));
                 throw new BusinessException(e.getCause(), GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL);
@@ -255,7 +259,7 @@ public class OrderService {
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_SHIPPING_SAVE_FAIL);
         }
 
-        return Long.valueOf(orderId);
+        return orderId;
     }
 
     /**
@@ -264,7 +268,7 @@ public class OrderService {
      * @param orderId 订单id
      * @return
      */
-    public int cancelOrder(Long orderId) {
+    public int cancelOrder(String orderId) {
         return updateOrderState(orderId, OrderStateEnum.CANCEL);
     }
 
@@ -274,7 +278,7 @@ public class OrderService {
      * @param orderId 订单id
      * @return
      */
-    public int delOrder(Long orderId) {
+    public int delOrder(String orderId) {
         return updateOrderState(orderId, OrderStateEnum.DELETE);
     }
 
@@ -285,9 +289,9 @@ public class OrderService {
      * @param orderStateEnum 状态 enum
      * @return
      */
-    private int updateOrderState(Long orderId, OrderStateEnum orderStateEnum) {
+    private int updateOrderState(String orderId, OrderStateEnum orderStateEnum) {
 
-        TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(String.valueOf(orderId));
+        TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(orderId);
         if (tbOrder == null) {
             log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND.getMessage() + String.format(" order id : {%s}", orderId));
             throw new BusinessException(GlobalErrorCodeEnum.BUSINESS_ORDER_NOT_FOUND);
