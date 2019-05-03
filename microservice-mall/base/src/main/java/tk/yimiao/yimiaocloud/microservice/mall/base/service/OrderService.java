@@ -234,13 +234,11 @@ public class OrderService {
                 for (String s : jsonList) {
                     CartProduct cart = JSON.parseObject(s, CartProduct.class);
                     if (cart.getProductId().equals(cartProduct.getProductId())) {
-                        delCartItem.add(String.valueOf(cartProduct.getProductId()));
+                        jedisUtil.hdel(key, cartProduct.getProductId()+"");
                     }
                 }
-                if (delCartItem.size()>0) {
-                    jedisUtil.hdel(key, (String[]) delCartItem.toArray());
-                }
             } catch (Exception e) {
+                log.error("", e);
                 log.error(GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL.getMessage() + String.format(" userId is : {%s}", orderInfo.getUserId()));
                 throw new BusinessException(e.getCause(), GlobalErrorCodeEnum.BUSINESS_ORDER_ITEM_CREATE_FAIL);
             }
